@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Planner 2026</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="planner">
+    <header>
+      <p class="eyebrow">MY PLANNER 2026</p>
+      <div class="heading-row">
+        <h1>October 22nd</h1>
+        <span class="task-count">2 Tasks</span>
+      </div>
+      <nav class="week" aria-label="Week of October 19">
+        <button class="day" type="button" aria-label="October 19">19</button>
+        <button class="day" type="button" aria-label="October 20">20</button>
+        <button class="day" type="button" aria-label="October 21">21</button>
+        <button class="day current" type="button" aria-current="date" aria-label="October 22, selected">22</button>
+        <button class="day" type="button" aria-label="October 23">23</button>
+        <button class="day" type="button" aria-label="October 24">24</button>
+        <button class="day" type="button" aria-label="October 25">25</button>
+      </nav>
+    </header>
+
+    <!-- Events stay in chronological order and are spaced by Flexbox. -->
+    <section class="timeline" aria-label="Daily timeline, 7 AM to 11 PM">
+      <article class="timeline-item">
+        <span class="marker" aria-hidden="true"></span>
+        <div class="event-body">
+          <div class="event-title"><time datetime="07:00">7:00</time><span>Wake up</span></div>
+        </div>
+      </article>
+      <article class="timeline-item meeting-item">
+        <span class="marker meeting" aria-hidden="true"></span>
+        <div class="event-body">
+          <div class="event-title"><time datetime="10:00">10:00</time><strong>GRL Meeting</strong></div>
+          <div class="event-details"><p>Presentation</p></div>
+          <a class="add-link" href="#add-assignment">+ Add assignment</a>
+        </div>
+      </article>
+      <article class="timeline-item class-item">
+        <span class="marker class" aria-hidden="true"></span>
+        <div class="event-body">
+          <div class="event-title"><time datetime="15:00">15:00</time><strong>MSTU 5077: Visual Communication</strong></div>
+          <div class="event-details"><p>Reading</p><p>Midterm essay</p></div>
+          <a class="add-link" href="#add-assignment">+ Add assignment</a>
+        </div>
+      </article>
+      <article class="timeline-item task-item">
+        <span class="marker task-marker" aria-hidden="true"></span>
+        <div class="event-body">
+          <div class="event-title"><time class="deadline-time" datetime="20:00">20:00</time><strong>Task / Deadline</strong></div>
+          <div class="event-details">
+            <!-- Only tasks use a checkbox; CSS styles the checked state. -->
+            <label class="task-label"><input type="checkbox"><span>Finish reading reflection</span><b class="due-today">DUE TODAY</b></label>
+            <p class="task-note">Visual Communication</p>
+            <label class="task-label"><input type="checkbox"><span>Prepare meeting notes</span><b class="due-today">DUE TODAY</b></label>
+            <p class="task-note">GRL Meeting</p>
+            <a class="add-link" href="#add-assignment">+ Add assignment</a>
+          </div>
+        </div>
+      </article>
+      <article class="timeline-item">
+        <span class="marker" aria-hidden="true"></span>
+        <div class="event-body">
+          <div class="event-title"><time datetime="23:00">23:00</time><span>Bedtime</span></div>
+        </div>
+      </article>
+    </section>
+
+    <section id="add-assignment" class="assignment-panel" aria-labelledby="form-title">
+      <div class="panel-heading"><h2 id="form-title">Add Assignment</h2><a class="close-link" href="#planner-bottom" aria-label="Close assignment form">Close ×</a></div>
+      <form>
+        <label class="field">Assignment name <input type="text" placeholder="e.g. Midterm essay"></label>
+        <label class="field">Due date <input type="date"></label>
+        <label class="field">Due time <input type="time"></label>
+        <button class="save-button" type="button">Save Assignment</button>
+      </form>
+    </section>
+    <p id="planner-bottom" hidden></p>
+  </main>
+</body>
+</html>

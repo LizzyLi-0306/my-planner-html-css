@@ -1,0 +1,73 @@
+/* 1. Global styles and box model */
+:root {
+  --text-primary: #3d3d3d;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; padding: 38px 24px; background: #f8f8f8; color: #171717; font-family: Arial, Helvetica, sans-serif; }
+button, input { font: inherit; }
+/* 2. Floating-style planner window */
+.planner { width: min(100%, 640px); margin: 0 auto; padding: 28px; background: #dedede; border: 1px solid #d0d0d0; box-shadow: 0 16px 35px #00000012; }
+.eyebrow { margin: 0 0 6px; color: var(--text-primary); font-size: 20px; letter-spacing: 1px; }
+.heading-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+h1 { font-size: clamp(28px, 6vw, 40px); margin: 0 0 14px; }
+.task-count { font-size: 24px; white-space: nowrap; }
+/* 3. Week selector: seven equal columns */
+.week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; margin-bottom: 36px; }
+.day { border: 0; background: #ececec; color: var(--text-primary); padding: 13px 0; cursor: pointer; font-size: 22px; }
+.day.current { background: white; color: #171717; outline: 2px solid #777; outline-offset: -2px; }
+.day:hover { background: #d7d7d7; }
+.day:focus-visible, .add-link:focus-visible, .save-button:focus-visible { outline: 3px solid #357c76; outline-offset: 3px; }
+/* 4. Flexbox timeline: items use normal document flow and equal free space. */
+.timeline { position: relative; display: flex; flex-direction: column; justify-content: space-between; min-height: 590px; margin: 0 0 12px 20px; }
+.timeline::before { content: ""; position: absolute; left: 9px; top: 10px; bottom: 10px; width: 1px; background: #454545; }
+.timeline-item { position: relative; display: flex; align-items: flex-start; gap: 18px; }
+.marker { position: relative; z-index: 1; flex: 0 0 20px; width: 20px; height: 20px; background: #fff; }
+.marker.meeting { background: #65b8a5; }
+.marker.class { background: #ffa450; }
+/* Purple is reserved for a regular task; red marks today's deadline. */
+.marker.task { background: #8a73b6; }
+.task-marker { background: #cf3e3e; }
+.event-body { flex: 1; min-width: 0; }
+.event-title { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: baseline; font-size: 16px; font-weight: 500; }
+.event-title strong { font-weight: 600; }
+.timeline-item:first-child .event-title span,
+.timeline-item:last-child .event-title span { color: var(--text-primary); }
+.event-title time { min-width: 54px; font-size: 14px; font-weight: 600; color: #353535; }
+/* Supporting details stay quieter than the event title. */
+.event-details { margin: 8px 0 0 70px; font-size: 13px; line-height: 1.65; color: #696969; }
+.event-details p { margin: 0; }
+.add-link { display: inline-block; margin-top: 10px; color: #185d58; font-size: 13px; font-weight: 600; text-underline-offset: 3px; }
+/* Links directly below an event align with the event name, not the time. */
+.event-body > .add-link { margin-left: 70px; }
+.event-title .deadline-time { color: #b52424; font-size: 16px; font-weight: 700; font-style: italic; }
+.task-label { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 8px; cursor: pointer; color: #171717; font-size: 15px; font-weight: 600; }
+.task-label + .task-note { margin-bottom: 12px; }
+.task-label input { margin: 3px 0 0; accent-color: #cf3e3e; width: 17px; height: 17px; }
+.task-label input:checked + span { color: #777; text-decoration: line-through; }
+.task-note { margin: 5px 0 0 25px; font-size: 12px; color: #727272; }
+/* The due label is the first visual priority in the task section. */
+.due-today { align-self: center; padding: 3px 7px; background: #cf3e3e; color: white; font-size: 11px; font-weight: 700; letter-spacing: .6px; }
+/* 5. HTML/CSS-only form reveal using :target */
+.assignment-panel { display: none; padding: 18px; margin-top: 18px; background: #f5f5f5; border: 1px solid #c6c6c6; }
+.assignment-panel:target { display: block; }
+.panel-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.panel-heading h2 { margin: 0; font-size: 19px; }
+.close-link { color: #444; }
+.field { display: flex; flex-direction: column; gap: 6px; margin-top: 14px; font-size: 14px; }
+.field input { padding: 10px; border: 1px solid #bcbcbc; background: white; width: 100%; }
+.save-button { margin-top: 16px; border: 0; background: #171717; color: white; padding: 11px 18px; cursor: pointer; }
+@media (max-width: 520px) {
+  body { padding: 12px; }
+  .planner { padding: 16px; }
+  .eyebrow { font-size: 15px; }
+  .task-count { font-size: 16px; }
+  .week { gap: 5px; }
+  .day { font-size: 16px; padding: 11px 0; }
+  .timeline { min-height: 0; gap: 32px; margin-left: 5px; }
+  .timeline-item { gap: 12px; }
+  .event-title { font-size: 14px; gap: 5px 9px; }
+  .event-title time { min-width: 45px; }
+  .event-details { margin-left: 54px; font-size: 13px; }
+  .event-body > .add-link { margin-left: 54px; }
+}
